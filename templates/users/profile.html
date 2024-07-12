@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    <p>Username: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Role: {{ user.userprofile.role }}</p>
+    <p>Phone Number: {{ user.userprofile.phone_number }}</p>
+    <p>Address: {{ user.userprofile.address }}</p>
+    <a href="{% url 'home' %}">Home</a>
+</body>
+</html>

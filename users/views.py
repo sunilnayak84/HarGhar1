@@ -1,5 +1,5 @@
-# users/views.py
-
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from rest_framework import generics, permissions
 from .models import Appointment, UserProfile
 from .serializers import AppointmentSerializer, UserProfileSerializer
@@ -11,6 +11,15 @@ class UserProfileDetail(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return UserProfile.objects.get(user=self.request.user)
+
+@login_required
+def profile(request):
+    userprofile = UserProfile.objects.get(user=request.user)
+    return render(request, 'users/profile.html', {'user': userprofile})
+
+@login_required
+def dashboard(request):
+    return render(request, 'users/dashboard.html')
 
 class AppointmentListCreate(generics.ListCreateAPIView):
     queryset = Appointment.objects.all()
